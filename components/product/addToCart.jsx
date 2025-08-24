@@ -52,7 +52,7 @@ export default function AddToCart({ product, selectedSize, quantity, selectedCol
       <button
         onClick={handleAddToCart}
         disabled={cartLoading}
-        className="flex-1 bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition disabled:opacity-50"
+        className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition disabled:opacity-50"
       >
         {cartLoading ? "Adding..." : `Add ${quantity ? quantity : ""} to Cart`}
       </button>

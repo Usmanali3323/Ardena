@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useTheme } from "next-themes";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/router";
 
 export default function SignupPage() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -9,6 +11,7 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,30 +23,23 @@ export default function SignupPage() {
     setErrorMsg("");
     setSuccessMsg("");
 
-    try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          full_name: form.name,
-          email: form.email,
-          password: form.password,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!data.success) {
-        setErrorMsg(data.error || "Signup failed");
-      } else {
-        setSuccessMsg("✅ Signup successful! Check your email to confirm.");
-      }
-    } catch (err) {
-      console.error(err);
-      setErrorMsg("Something went wrong.");
-    } finally {
-      setLoading(false);
+const supabase = await createClientComponentClient();
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password,
+      options: {
+        data: {
+          role: "user", // 👈 custom app_metadata or user_metadata
+        },
+      },
+    })
+     
+    if (error) {
+      setError(error.message);
+    } else {     
+      setSuccessMsg(" ✅ Check your email to confirm signup!")
     }
+    setLoading(false);
   };
 
   return (
