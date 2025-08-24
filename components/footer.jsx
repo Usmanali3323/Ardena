@@ -40,6 +40,7 @@ export default function Footer() {
             <li><Link href="/orders" className="hover:text-pink-500 transition">Orders</Link></li>
             <li><Link href="/returns" className="hover:text-pink-500 transition">Returns</Link></li>
             <li><Link href="/faq" className="hover:text-pink-500 transition">FAQ</Link></li>
+            <li><Link href="https://portflio-4ac1d.web.app/" className="hover:text-pink-500 transition">Developer</Link></li>
           </ul>
         </div>
 
@@ -66,7 +67,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-200 dark:border-gray-800 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
-        &copy; {new Date().getFullYear()} Heer Chain. All rights reserved.
+        &copy; {new Date().getFullYear()} Ardena. All rights reserved.
       </div>
     </footer>
   );

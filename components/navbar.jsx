@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -175,43 +176,53 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden bg-white dark:bg-gray-900 overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-screen opacity-100 py-4" : "max-h-0 opacity-0"
-        }`}
+    {/* Mobile Menu */}
+<div
+  className={`md:hidden bg-white dark:bg-gray-900 overflow-hidden transition-all duration-300 ${
+    isOpen ? "max-h-screen opacity-100 py-4" : "max-h-0 opacity-0"
+  }`}
+>
+  <div className="flex flex-col space-y-4 px-6 text-lg font-medium">
+    {React.Children.map(navLinks.props.children, (child) =>
+      React.cloneElement(child, {
+        onClick: () => setIsOpen(false), // ✅ close on link click
+      })
+    )}
+
+    {user ? (
+      <button
+        onClick={() => {
+          handleLogout();
+          setIsOpen(false); // ✅ close on logout
+        }}
+        className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg shadow-md text-center hover:opacity-90 transition"
       >
-        <div className="flex flex-col space-y-4 px-6 text-lg font-medium">
-          {navLinks}
+        Logout
+      </button>
+    ) : (
+      <Link
+        href="/login"
+        onClick={() => setIsOpen(false)} // ✅ close on login
+        className={
+          linkClass("/login") +
+          " bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white px-6 py-2 rounded-lg shadow-md text-center hover:opacity-90 transition"
+        }
+      >
+        Login
+      </Link>
+    )}
 
-          {user ? (
-            <button
-              onClick={handleLogout}
-              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-lg shadow-md text-center hover:opacity-90 transition"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link
-              href="/login"
-              className={
-                linkClass("/login") +
-                " bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 text-white px-6 py-2 rounded-lg shadow-md text-center hover:opacity-90 transition"
-              }
-            >
-              Login
-            </Link>
-          )}
+    {/* Mobile Theme Toggle */}
+    <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition"
+    >
+      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      {theme === "dark" ? "Light Mode" : "Dark Mode"}
+    </button>
+  </div>
+</div>
 
-          {/* Mobile Theme Toggle */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
-          </button>
-        </div>
-      </div>
     </nav>
   );
 }

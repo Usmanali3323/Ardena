@@ -94,14 +94,14 @@ export default function CartPage() {
               <Image
                 src={item.product_id.images?.[0] || "/fallback.jpg"}
                 alt={item.product_id.name}
-                fill
+                fill={true}
                 className="object-contain rounded"
               />
             </div>
 
             {/* Product Details */}
             <div className="flex-1 w-full">
-              <h2 className="text-lg font-medium">{item.product_id.name}</h2>
+              <h2 className="text-base sm:text-lg font-medium">{item.product_id.name.length > 35 ? item.product_id.name.slice(0,70)+"..." : item.product_id.name}</h2>
               {item.size && (
                 <p className="text-sm text-gray-500 mt-1">
                   Size: {item.size.toUpperCase()}
