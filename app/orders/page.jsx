@@ -1,6 +1,7 @@
 "use client";
 import useUser from "@/components/session";
 import Loading from "@/loading";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function OrdersPage() {
@@ -73,7 +74,7 @@ export default function OrdersPage() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="border p-6 rounded-xl shadow-lg bg-white hover:shadow-xl transition"
+            className="border p-6 rounded-xl shadow-lg bg-white dark:bg-gray-800 dark:text-white hover:shadow-xl transition"
           >
             {/* Header */}
             <div
@@ -98,7 +99,7 @@ export default function OrdersPage() {
               <span className="text-sm text-gray-700">
                 Payment:{" "}
                 <b className="capitalize">
-                  {order.payment_method || "N/A"}
+                  {order.payment_status || "N/A"}
                 </b>
               </span>
             </div>
@@ -108,7 +109,7 @@ export default function OrdersPage() {
               <div className="mt-4">
                 {/* Address */}
                 {order.shipping?.length > 0 && (
-                  <div className="mb-4 text-sm text-gray-700">
+                  <div className="mb-4 text-sm text-gray-700 dark:text-white">
                     <p className="font-medium mb-1">Shipping to:</p>
                     <p>
                       {order.shipping[0].street}, {order.shipping[0].city},{" "}
@@ -127,10 +128,12 @@ export default function OrdersPage() {
                       className="flex items-center justify-between border-b pb-3"
                     >
                       <div className="flex items-center gap-3">
-                        <img
+                        <Image
                           src={item.product?.images?.[0]}
                           alt={item.product?.name}
-                          className="w-16 h-16 rounded-lg object-cover border"
+                          className="w-16 h-16 rounded-lg object-contain border"
+                          width={25}
+                          height={25}
                         />
                         <div>
                           <p className="font-medium text-sm">

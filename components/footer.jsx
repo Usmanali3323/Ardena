@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -27,7 +27,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-pink-500 transition">Home</Link></li>
-            <li><Link href="/products" className="hover:text-pink-500 transition">Products</Link></li>
+            <li><Link href="/product" className="hover:text-pink-500 transition">Products</Link></li>
             <li><Link href="/about" className="hover:text-pink-500 transition">About</Link></li>
             <li><Link href="/cart" className="hover:text-pink-500 transition">Cart</Link></li>
           </ul>
@@ -38,7 +38,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Support</h3>
           <ul className="space-y-2 text-sm">
             <li><Link href="/orders" className="hover:text-pink-500 transition">Orders</Link></li>
-            <li><Link href="/returns" className="hover:text-pink-500 transition">Returns</Link></li>
+            <li><Link href="/policy" className="hover:text-pink-500 transition">Returns</Link></li>
             <li><Link href="/faq" className="hover:text-pink-500 transition">FAQ</Link></li>
             <li><Link href="https://portflio-4ac1d.web.app/" className="hover:text-pink-500 transition">Developer</Link></li>
           </ul>
@@ -49,9 +49,9 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4">
             {[
-              { icon: <Facebook size={18} />, href: "#" },
-              { icon: <Instagram size={18} />, href: "#" },
-              { icon: <Twitter size={18} />, href: "#" },
+              { icon: <Facebook size={18} />, href: "https://www.facebook.com/usman.ali.797869" },
+              { icon: <Instagram size={18} />, href: "https://www.instagram.com/usman106525/" },
+              { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/in/usman-ali-8aa5a223b " },
             ].map((social, idx) => (
               <Link
                 key={idx}
