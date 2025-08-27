@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -33,6 +34,7 @@ export default function LoginPage() {
 
     if (data?.session) {
       // session stored in localStorage automatically
+      toast.success("successfully Signin")
       window.location.href = "/";
     } else {
       setErrorMsg("Login failed: No session returned.");

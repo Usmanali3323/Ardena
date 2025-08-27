@@ -4,6 +4,7 @@ import '@/app/global.css'
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/navbar";
 import Footer from '@/components/footer';
+import { Toaster } from 'react-hot-toast';
 // import { SessionProvider } from "@supabase/auth-helpers-react";
 
 export default function RootLayout({ children }) {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
               <Navbar />
               {children}
               <Footer />
+                <Toaster position="top-right" reverseOrder={false} />
             </div>
           </ThemeProvider>
       </body>

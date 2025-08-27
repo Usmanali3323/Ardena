@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Loading from "@/loading";
 import useUser from "@/components/session";
+import toast from "react-hot-toast";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -54,6 +55,7 @@ export default function CartPage() {
         body: JSON.stringify({ id }),
       });
       setCartItems((prev) => prev.filter((item) => item.id !== id));
+      toast.success("item remove from card")
     } catch (err) {
       console.error("Error removing item:", err);
     }

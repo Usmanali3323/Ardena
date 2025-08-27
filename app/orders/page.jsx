@@ -3,6 +3,7 @@ import useUser from "@/components/session";
 import Loading from "@/loading";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -27,10 +28,6 @@ export default function OrdersPage() {
     fetchOrders();
   }, []);
 
-  if (loading) return <Loading />;
-  if (orders.length === 0)
-    return <p className="text-center py-10">No orders found.</p>;
-
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case "pending":
@@ -54,12 +51,12 @@ export default function OrdersPage() {
   if(load){
     return <Loading/>
   }
-
   
-  if (orders.length === 0)
+  
+  if (orders.length == 0)
     return (
-      <div className="p-6 mt-20 mb-10 text-center text-gray-500">
-        <p>Your cart is empty.</p>
+      <div className="p-6 mt-20 mb-10 text-center text-gray-500 dark:text-white">
+        <p>Not Order Taken Yet.</p>
         <Link href="/" className="text-blue-500 underline">
           Continue Shopping
         </Link>

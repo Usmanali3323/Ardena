@@ -3,13 +3,23 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import useUser from "../session";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function AddToCart({ product, selectedSize, quantity, selectedColor }) {
   const [cartLoading, setCartLoading] = useState(false);
+  const {user,load} = useUser();
+ const router = useRouter()
 
   const handleAddToCart = async () => {
     if (!quantity) return redirect(`/product/${product.id}`);
     setCartLoading(true);
-
+   if(!load && !user){
+   toast.error("please login first");
+   router.push('/login')
+  }
+   
+   
     try {
       const res = await fetch("/api/cart/add", {
         method: "POST",
@@ -26,10 +36,10 @@ export default function AddToCart({ product, selectedSize, quantity, selectedCol
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to add to cart");
 
-      alert("✅ Item added to cart!");
+      toast.success("✅ Item added to cart!");
     } catch (err) {
       console.error("Add to cart error:", err);
-      alert("❌ Failed to add item to cart");
+      //alert("❌ Failed to add item to cart");
     } finally {
       setCartLoading(false);
     }

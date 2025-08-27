@@ -18,6 +18,7 @@ export default function Loading() {
         <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-150"></span>
         <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-300"></span>
       </div>
+
     </div>
   );
 }

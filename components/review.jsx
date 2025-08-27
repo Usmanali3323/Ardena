@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 //productId coming from parent url 
 //setRev passing review from child to parent
@@ -24,6 +25,7 @@ export function Review({ productId, setRev,allReview }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to fetch reviews");
       setReviews(data.data || []);
+      setRev(data.data || [])
       
       setRev && setRev(data.data);
     } catch (err) {
@@ -61,8 +63,7 @@ export function Review({ productId, setRev,allReview }) {
 
       setNewReview("");
       setNewRating(0);
-      alert("Review submitted successfully!");
-      console.log("Review submitted:", data.data);
+      toast.success("Review submitted successfully!");
 
       // Refresh reviews
       fetchReviews();

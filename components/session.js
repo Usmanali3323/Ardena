@@ -19,7 +19,8 @@ export default function useUser({ redirectToLogin = true } = {}) {
       }
 
       if (!data?.user && redirectToLogin) {
-        router.push("/login");
+        setUser(null)
+        setLoading(false)
       } else {
         setUser(data?.user || null);
       }

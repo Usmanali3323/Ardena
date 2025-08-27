@@ -57,7 +57,7 @@ export default function Page() {
     reviews.length > 0
       ? (reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length).toFixed(1)
       : 0;
-
+   
   const finalPrice = product.price * (1 - (product.discount_percent || 0) / 100);
 
   return (
@@ -66,7 +66,7 @@ export default function Page() {
         {/* Product Images */}
         <div>
           {/* Main Image */}
-          <div className="relative w-full h-72 sm:h-80 lg:h-[420px] mb-3 rounded-lg overflow-hidden shadow">
+          <div className="relative w-full h-72 sm:h-80 mb-3 rounded-lg overflow-hidden shadow">
             <Image
               src={selectedImage || "/fallback.jpg"}
               alt={product.name}
@@ -112,9 +112,9 @@ export default function Page() {
                 <span key={i}>{i < Math.round(avgRating) ? "★" : "☆"}</span>
               ))}
             </div>
-            <span className="text-xs sm:text-sm text-gray-500">
+            <span className="text-xs sm:text-sm text-blue-700 ">
               {avgRating} ({reviews.length}{" "}
-              <Link href={`/product/${product.id}/reviews`}>reviews</Link>)
+              <Link href={`/product/${product.id}/reviews`} className="underline">reviews</Link>)
             </span>
           </div>
 
@@ -188,14 +188,14 @@ export default function Page() {
             <div className="flex items-center gap-2">
               <button
                 onClick={decreaseQty}
-                className="w-7 h-7 flex items-center justify-center border rounded text-sm font-bold hover:bg-gray-100"
+                className="w-10 h-10 flex items-center justify-center border rounded text-sm font-bold hover:bg-gray-100"
               >
                 -
               </button>
-              <span className="text-sm">{quantity}</span>
+              <span className="text-lg">{quantity}</span>
               <button
                 onClick={increaseQty}
-                className="w-7 h-7 flex items-center justify-center border rounded text-sm font-bold hover:bg-gray-100"
+                className="w-10 h-10 flex items-center justify-center border rounded text-sm font-bold hover:bg-gray-100"
               >
                 +
               </button>
@@ -217,7 +217,7 @@ export default function Page() {
           />
 
           {/* Reviews */}
-          <Review productId={product.id} setReviews={setReviews} />
+          <Review productId={product.id} setRev={setReviews} />
         </div>
       </div>
     </div>

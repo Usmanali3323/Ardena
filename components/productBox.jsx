@@ -3,9 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import AddToCart from './product/addToCart';
 import Loading from '@/loading';
+import { useRouter } from 'next/navigation';
 
 function productBox({products}) {
-  
+  const router = useRouter()
   return (
              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     {products  &&  products.map((product) => {
@@ -16,7 +17,8 @@ function productBox({products}) {
                       return (
                         <div
                           key={product.id}
-                          className="group bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                          className="group bg-white dark:bg-gray-900 rounded-xl hover:cursor-pointer shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                          onClick={()=>router.push(`/product/${product.id}`)}
                         >
                           {/* Product Image */}
                           <div className="relative w-full h-64 overflow-hidden">
