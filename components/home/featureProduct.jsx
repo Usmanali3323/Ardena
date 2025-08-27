@@ -29,7 +29,7 @@ export default function FeaturedProducts() {
 
   return (
     <section className="bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950 py-20 transition-colors duration-500">
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12">
         {/* Section Title */}
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100">
