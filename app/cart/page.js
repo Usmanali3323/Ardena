@@ -105,11 +105,11 @@ export default function CartPage() {
             <div className="flex-1 w-full">
               <h2 className="text-base sm:text-lg font-medium">{item.product_id.name.length > 35 ? item.product_id.name.slice(0,70)+"..." : item.product_id.name}</h2>
               {item.size && (
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-500 dark:text-white mt-1">
                   Size: {item.size.toUpperCase()}
                 </p>
               )}
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 dark:text-white mt-1">
                 Color:{" "}
                 <span
                   className="inline-block w-4 h-4 rounded-full border"
